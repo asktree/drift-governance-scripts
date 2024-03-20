@@ -1,0 +1,14 @@
+{
+  "name": "drift-governance-scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/asktree/drift-governance-scripts.git",
+  "author": "agrippa kellum <ask252@cornell.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.91.1",
+    "@sqds/multisig": "^2.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  }
+}
