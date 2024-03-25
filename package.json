@@ -6,6 +6,7 @@
   "author": "agrippa kellum <ask252@cornell.edu>",
   "license": "MIT",
   "dependencies": {
+    "@solana/spl-governance": "^0.3.28",
     "@solana/web3.js": "^1.91.1",
     "@sqds/multisig": "^2.1.1",
     "ts-node": "^10.9.2",
