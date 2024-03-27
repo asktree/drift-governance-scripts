@@ -42,9 +42,11 @@ const wallet = Keypair.fromSecretKey(Uint8Array.from(keypair))
 const GOV_PROGRAM_ID = new PublicKey(
   'dgov7NC8iaumWw3k8TkmLDybvZBCmd1qwxgLAGAsWxf'
 )
-const DRIFT_PROGRAM_ID = new PublicKey(0) // TODO
+const DRIFT_PROGRAM_ID = new PublicKey(
+  'dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH'
+) // TODO
 const PLUGIN_PROGRAM_ID = new PublicKey(
-  'H5cjESgwpXoTf7szHBch17noet6DdTFCrMgHcTro5cLb'
+  'dVoTE1AJqkZVoE1mPbWcqYPmEEvAUBksHY2NiM2UJQe'
 ) //TODO
 const REALM_NAME = 'Drift DAO'
 const DRIFT_GOVERNANCE_TOKEN_MINT = new PublicKey(
