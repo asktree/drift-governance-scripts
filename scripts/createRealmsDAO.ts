@@ -44,15 +44,17 @@ const GOV_PROGRAM_ID = new PublicKey(
 )
 const DRIFT_PROGRAM_ID = new PublicKey(
   'dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH'
-) // TODO
+)
 const PLUGIN_PROGRAM_ID = new PublicKey(
   'dVoTE1AJqkZVoE1mPbWcqYPmEEvAUBksHY2NiM2UJQe'
-) //TODO
-const REALM_NAME = 'Drift DAO'
+)
+const REALM_NAME = 'Drift DAO Final' // "Drift DAO"
+// Token Configuration ----------------------------------------------------------
 const DRIFT_GOVERNANCE_TOKEN_MINT = new PublicKey(
-  '9Nbk6yWk8EhBERLQRp7UKSZJXm7LzZVcazsw1MaVqWy9'
+  '8zGuJQqwhZafTah7Uc7Z4tXRnguqkn5KLFAP8oV6PHe2'
 ) // TODO
-const DRIFT_TOKEN_DECIMALS = 9
+const DRIFT_GOV_TOKEN_SPOT_INDEX = 0 // TODO
+const DRIFT_TOKEN_DECIMALS = 9 // TODO
 const CIRCULATING_TOKEN_SUPPLY = new BN(1000000000000) // TODO
 
 // DAO Configuration -------------------------------------------------------------
@@ -335,7 +337,7 @@ const script = async () => {
     PLUGIN_PROGRAM_ID
   )
   const createRegistrarIx = await program.methods
-    .createRegistrar(0)
+    .createRegistrar(DRIFT_GOV_TOKEN_SPOT_INDEX)
     .accountsStrict({
       realm: realmPk,
       registrar: registrarPk,
