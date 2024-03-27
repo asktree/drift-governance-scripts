@@ -34,6 +34,7 @@ import {
   MintLayout,
   createInitializeMintInstruction,
   createSetAuthorityInstruction,
+  getMint,
 } from '@solana/spl-token'
 import { IDL } from './realms-plugin-sdk/idl'
 
@@ -48,14 +49,13 @@ const DRIFT_PROGRAM_ID = new PublicKey(
 const PLUGIN_PROGRAM_ID = new PublicKey(
   'dVoTE1AJqkZVoE1mPbWcqYPmEEvAUBksHY2NiM2UJQe'
 )
-const REALM_NAME = 'Drift DAO Final' // "Drift DAO"
+const REALM_NAME = 'Drift DAO Devnet' // "Drift DAO"
 // Token Configuration ----------------------------------------------------------
 const DRIFT_GOVERNANCE_TOKEN_MINT = new PublicKey(
   '8zGuJQqwhZafTah7Uc7Z4tXRnguqkn5KLFAP8oV6PHe2'
 ) // TODO
 const DRIFT_GOV_TOKEN_SPOT_INDEX = 0 // TODO
-const DRIFT_TOKEN_DECIMALS = 9 // TODO
-const CIRCULATING_TOKEN_SUPPLY = new BN(1000000000000) // TODO
+const CIRCULATING_TOKEN_SUPPLY = new BN(1000000000000) // in raw form (to the power of 10^mintInfo.decimals)
 
 // DAO Configuration -------------------------------------------------------------
 // We aren't really expecting to create any DAO wallets after the DAO genesis. Creating them maliciously doesn't do anything, though it can be used to grief the UI.
@@ -66,9 +66,7 @@ const councilMembers = [wallet.publicKey]
 // -- Voting rules
 const communityVoteQuorumPercent = 2 // 2%
 const councilVetoPercent = 30 // 30%
-const minCommunityTokensToCreateProposal = new BN(20000).mul(
-  new BN(10 ** DRIFT_TOKEN_DECIMALS)
-) // 20k
+const minCommunityTokensToCreateProposal = new BN(20000) // 20k, in human-readable form (not raw)
 
 // The amount of time a proposal can be voted on normally
 const votingPeriodHours = 24 * 6
@@ -88,6 +86,8 @@ const script = async () => {
   }
   const connection = new Connection(process.env.RPC as string)
   const councilMint = Keypair.generate()
+
+  const mintInfo = await getMint(connection, DRIFT_GOVERNANCE_TOKEN_MINT)
 
   const sendInstructions = async (
     instructions: TransactionInstruction[],
@@ -185,7 +185,8 @@ const script = async () => {
         type: VoteThresholdType.YesVotePercentage,
         value: communityVoteQuorumPercent,
       }),
-      minCommunityTokensToCreateProposal,
+      minCommunityTokensToCreateProposal:
+        minCommunityTokensToCreateProposal.mul(new BN(10 ** mintInfo.decimals)),
       minInstructionHoldUpTime: holdupPeriodHours * 60 * 60,
       baseVotingTime: votingPeriodHours * 60 * 60,
       // Enabling vote tipping for a liquid token makes the DAO vulnerable to flash loan attacks
@@ -244,7 +245,8 @@ const script = async () => {
         type: VoteThresholdType.YesVotePercentage,
         value: communityVoteQuorumPercent,
       }),
-      minCommunityTokensToCreateProposal,
+      minCommunityTokensToCreateProposal:
+        minCommunityTokensToCreateProposal.mul(new BN(10 ** mintInfo.decimals)),
       minInstructionHoldUpTime: holdupPeriodHours * 60 * 60,
       baseVotingTime: votingPeriodHours * 60 * 60,
       communityVoteTipping: VoteTipping.Disabled,
