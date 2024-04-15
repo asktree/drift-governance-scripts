@@ -37,23 +37,16 @@ import {
   getMint,
 } from '@solana/spl-token'
 import { IDL } from './realms-plugin-sdk/idl'
+import {
+  DRIFT_GOVERNANCE_TOKEN_MINT,
+  GOV_PROGRAM_ID,
+  PLUGIN_PROGRAM_ID,
+  DRIFT_PROGRAM_ID,
+} from '../constants'
 
 const wallet = Keypair.fromSecretKey(Uint8Array.from(keypair))
 
-const GOV_PROGRAM_ID = new PublicKey(
-  'dgov7NC8iaumWw3k8TkmLDybvZBCmd1qwxgLAGAsWxf'
-)
-const DRIFT_PROGRAM_ID = new PublicKey(
-  'dRiftyHA39MWEi3m9aunc5MzRF1JYuBsbn6VPcn33UH'
-)
-const PLUGIN_PROGRAM_ID = new PublicKey(
-  'dVoTE1AJqkZVoE1mPbWcqYPmEEvAUBksHY2NiM2UJQe'
-)
 const REALM_NAME = 'Drift DAO Devnet' // "Drift DAO"
-// Token Configuration ----------------------------------------------------------
-const DRIFT_GOVERNANCE_TOKEN_MINT = new PublicKey(
-  '8zGuJQqwhZafTah7Uc7Z4tXRnguqkn5KLFAP8oV6PHe2'
-) // TODO
 const DRIFT_GOV_TOKEN_SPOT_INDEX = 0 // TODO
 const CIRCULATING_TOKEN_SUPPLY = new BN(1000000000000) // in raw form (to the power of 10^mintInfo.decimals)
 
