@@ -27,5 +27,7 @@ const script = async () => {
   console.log('Transaction ID: ', txid)
   const result = await provider.connection.confirmTransaction(txid, 'finalized')
   console.log('Confirmation: ', result)
+
+  // TODO add DAO metadata
 }
 script()
