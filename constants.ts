@@ -1,5 +1,5 @@
 import { Keypair, PublicKey } from '@solana/web3.js'
-import ventureKeypair from '../drift-vanity-keypairs/dfutifdyDWKufgbo2yEXjoeZymPWgA1khQMKr1zTsxB.json'
+import ventureKeypair from '../drift-vanity-keypairs/dfutkLoFw7Zhqv18PtpEA9LZd4Ldwj3d3aw32pGtrcK.json'
 
 // GENERAL
 export const DRIFT_PROGRAM_ID = new PublicKey(
