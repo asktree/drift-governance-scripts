@@ -48,7 +48,7 @@ const wallet = Keypair.fromSecretKey(Uint8Array.from(keypair))
 
 const REALM_NAME = 'Drift DAO Devnet' // "Drift DAO"
 const DRIFT_GOV_TOKEN_SPOT_INDEX = 0 // TODO
-const CIRCULATING_TOKEN_SUPPLY = new BN(1000000000000) // in raw form (to the power of 10^mintInfo.decimals)
+const CIRCULATING_TOKEN_SUPPLY = new BN(1000000000).mul(new BN(10 ** 9)) // in raw form (to the power of 10^mintInfo.decimals)
 
 // DAO Configuration -------------------------------------------------------------
 // We aren't really expecting to create any DAO wallets after the DAO genesis. Creating them maliciously doesn't do anything, though it can be used to grief the UI.
