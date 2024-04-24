@@ -52,7 +52,7 @@ const CIRCULATING_TOKEN_SUPPLY = new BN(100 * 10 ** 6).mul(new BN(10 ** 6)) // 1
 
 // DAO Configuration -------------------------------------------------------------
 // We aren't really expecting to create any DAO wallets after the DAO genesis. Creating them maliciously doesn't do anything, though it can be used to grief the UI.
-const minTokensToCreateDaoWallet = new BN('18446744073709551615') // maximum possible value. only council can create, or the community can use a proposal.
+const minTokensToCreateDaoWallet = new BN('18446744073709551615') // maximum possible value. council can always create, or the community can use a proposal.
 // List council members for the veto council
 const councilMembers = [wallet.publicKey]
 
